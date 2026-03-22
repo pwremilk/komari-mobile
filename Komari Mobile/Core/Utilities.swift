@@ -50,15 +50,15 @@ func formatTimeInterval(seconds: Int64, shortened: Bool = false) -> String {
     let days = hours / 24
 
     if days >= 10 {
-        return "\(days)d"
+        return "\(days) d"
     } else if days > 0 {
-        return shortened ? "\(days)d" : "\(days)d\(hours % 24)h"
+        return shortened ? "\(days) d" : "\(days) d \(hours % 24) h"
     } else if hours > 0 {
-        return shortened ? "\(hours)h" : "\(hours)h\(minutes % 60)m"
+        return shortened ? "\(hours) h" : "\(hours) h \(minutes % 60) m"
     } else if minutes > 0 {
-        return shortened ? "\(minutes)m" : "\(minutes)m\(seconds % 60)s"
+        return shortened ? "\(minutes) m" : "\(minutes) m \(seconds % 60) s"
     } else {
-        return "\(seconds)s"
+        return "\(seconds) s"
     }
 }
 

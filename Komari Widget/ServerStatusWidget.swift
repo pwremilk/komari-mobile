@@ -167,36 +167,12 @@ struct ServerStatusSmallView: View {
                     Text(node.name)
                         .font(.caption)
                         .fontWeight(.semibold)
-
-                    Spacer()
-                }
-                .lineLimit(1)
-
-                HStack(spacing: 4) {
                     Circle()
                         .fill(entry.isOnline ? Color.green : Color.red)
                         .frame(width: 5, height: 5)
                         .shadow(color: (entry.isOnline ? Color.green : Color.red).opacity(0.6), radius: 3)
-
-                    if let status = entry.status, entry.isOnline {
-                        Text("Online")
-                            .font(.system(size: 8))
-                            .foregroundStyle(.secondary)
-                        Text("·")
-                            .font(.system(size: 8))
-                            .foregroundStyle(.quaternary)
-                        Image(systemName: "clock")
-                            .font(.system(size: 6))
-                            .foregroundStyle(.tertiary)
-                        Text(formatTimeInterval(seconds: status.uptime, shortened: true))
-                            .font(.system(size: 8))
-                            .foregroundStyle(.secondary)
-                    } else {
-                        Text("Offline")
-                            .font(.system(size: 8))
-                            .foregroundStyle(.red)
-                    }
                 }
+                .lineLimit(1)
 
                 Spacer()
                 
@@ -255,31 +231,23 @@ struct ServerStatusMediumView: View {
                         Text(node.name)
                             .font(.caption)
                             .fontWeight(.semibold)
-                        
                         Spacer()
                     }
                     Spacer()
-                    HStack(spacing: 4) {
+                    HStack(spacing: 6) {
                         Circle()
-                            .fill(Color.green)
-                            .frame(width: 6, height: 6)
-                            .shadow(color: Color.green.opacity(0.6), radius: 3)
+                            .fill(entry.isOnline ? Color.green : Color.red)
+                            .frame(width: 5, height: 5)
+                            .shadow(color: (entry.isOnline ? Color.green : Color.red).opacity(0.6), radius: 3)
 
-                        if let status = entry.status, entry.isOnline {
+                        if entry.isOnline {
                             Text("Online")
                                 .font(.caption2)
                                 .foregroundStyle(.secondary)
-                            
-                            Text("·")
-                                .foregroundStyle(.quaternary)
-                            
-                            Image(systemName: "clock")
-                                .font(.system(size: 8))
-                                .foregroundStyle(.tertiary)
-                            
-                            Text(formatTimeInterval(seconds: status.uptime, shortened: true))
+                        } else {
+                            Text("Offline")
                                 .font(.caption2)
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.red)
                         }
                     }
                 }

@@ -160,47 +160,76 @@ struct LoadChartSmallView: View {
                 Spacer()
                 if !entry.dataPoints.isEmpty {
                     Chart(entry.dataPoints) { point in
-                        AreaMark(
-                            x: .value("Time", point.date),
-                            y: .value("Value", point.value)
-                        )
-                        .foregroundStyle(.linearGradient(
-                            colors: [chartColor.opacity(0.3), chartColor.opacity(0.05)],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        ))
-                        .interpolationMethod(.catmullRom)
-                        
                         LineMark(
                             x: .value("Time", point.date),
                             y: .value("Value", point.value)
                         )
-                        .foregroundStyle(chartColor)
-                        .lineStyle(StrokeStyle(lineWidth: 1.5))
-                        .interpolationMethod(.catmullRom)
+                        .foregroundStyle(lineGradient)
                     }
                     .chartXAxis(.hidden)
-                    .chartYAxis(.hidden)
+                    .chartYAxis {
+                        AxisMarks(position: .leading) { value in
+                            AxisGridLine()
+                            AxisValueLabel {
+                                if let v = value.as(Double.self) {
+                                    switch entry.indicator {
+                                    case .cpu, .memory, .disk:
+                                        Text("\(Int(v))%")
+                                            .font(.system(size: 8))
+                                    case .networkIn, .networkOut:
+                                        Text(formatBytes(Int64(v)))
+                                            .font(.system(size: 8))
+                                    }
+                                }
+                            }
+                        }
+                    }
                     .chartLegend(.hidden)
                 }
                 Spacer()
                 Text(entry.currentValue)
                     .font(.title3)
                     .fontWeight(.bold)
-                    .foregroundStyle(chartColor)
+                    .foregroundStyle(currentValueColor)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
     }
-    
-    private var chartColor: Color {
+
+    private var isPercentageIndicator: Bool {
         switch entry.indicator {
-        case .cpu: return .blue
-        case .memory: return .green
-        case .disk: return .orange
+        case .cpu, .memory, .disk: return true
+        case .networkIn, .networkOut: return false
+        }
+    }
+
+    private var fixedColor: Color {
+        switch entry.indicator {
+        case .cpu, .memory, .disk: return .green
         case .networkIn: return .cyan
         case .networkOut: return .purple
         }
+    }
+
+    private var lineGradient: AnyShapeStyle {
+        if isPercentageIndicator {
+            return AnyShapeStyle(.linearGradient(
+                colors: [.red, .orange, .green],
+                startPoint: .top,
+                endPoint: .bottom
+            ))
+        }
+        return AnyShapeStyle(fixedColor)
+    }
+
+    private var currentValueColor: Color {
+        if isPercentageIndicator {
+            let value = entry.dataPoints.last?.value ?? 0
+            if value >= 80 { return .red }
+            if value >= 60 { return .orange }
+            return .green
+        }
+        return fixedColor
     }
 }
 
@@ -241,29 +270,16 @@ struct LoadChartMediumView: View {
                     Spacer()
                     Text("\(entry.indicator.label): \(entry.currentValue)")
                         .font(.caption)
-                        .foregroundStyle(chartColor)
+                        .foregroundStyle(currentValueColor)
                 }
-                
+
                 if !entry.dataPoints.isEmpty {
                     Chart(entry.dataPoints) { point in
-                        AreaMark(
-                            x: .value("Time", point.date),
-                            y: .value("Value", point.value)
-                        )
-                        .foregroundStyle(.linearGradient(
-                            colors: [chartColor.opacity(0.2), chartColor.opacity(0.02)],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        ))
-                        .interpolationMethod(.catmullRom)
-                        
                         LineMark(
                             x: .value("Time", point.date),
                             y: .value("Value", point.value)
                         )
-                        .foregroundStyle(chartColor)
-                        .lineStyle(StrokeStyle(lineWidth: 1.5))
-                        .interpolationMethod(.catmullRom)
+                        .foregroundStyle(lineGradient)
                     }
                     .chartXAxis {
                         AxisMarks(values: .stride(by: .hour)) { value in
@@ -279,10 +295,10 @@ struct LoadChartMediumView: View {
                                     switch entry.indicator {
                                     case .cpu, .memory, .disk:
                                         Text("\(Int(v))%")
-                                            .font(.system(size: 8))
+                                            .font(.caption2)
                                     case .networkIn, .networkOut:
                                         Text(formatBytes(Int64(v)))
-                                            .font(.system(size: 8))
+                                            .font(.caption2)
                                     }
                                 }
                             }
@@ -304,14 +320,40 @@ struct LoadChartMediumView: View {
         }
     }
     
-    private var chartColor: Color {
+    private var isPercentageIndicator: Bool {
         switch entry.indicator {
-        case .cpu: return .blue
-        case .memory: return .green
-        case .disk: return .orange
+        case .cpu, .memory, .disk: return true
+        case .networkIn, .networkOut: return false
+        }
+    }
+
+    private var fixedColor: Color {
+        switch entry.indicator {
+        case .cpu, .memory, .disk: return .green
         case .networkIn: return .cyan
         case .networkOut: return .purple
         }
+    }
+
+    private var lineGradient: AnyShapeStyle {
+        if isPercentageIndicator {
+            return AnyShapeStyle(.linearGradient(
+                colors: [.red, .orange, .green],
+                startPoint: .top,
+                endPoint: .bottom
+            ))
+        }
+        return AnyShapeStyle(fixedColor)
+    }
+
+    private var currentValueColor: Color {
+        if isPercentageIndicator {
+            let value = entry.dataPoints.last?.value ?? 0
+            if value >= 80 { return .red }
+            if value >= 60 { return .orange }
+            return .green
+        }
+        return fixedColor
     }
 }
 

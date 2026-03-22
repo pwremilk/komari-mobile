@@ -17,8 +17,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CB9771AF2F4696C300CFFF76"
-               BuildableName = "WidgetExtension.appex"
-               BlueprintName = "WidgetExtension"
+               BuildableName = "Komari Widget.appex"
+               BlueprintName = "Komari Widget"
                ReferencedContainer = "container:Komari Mobile.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CB9771AF2F4696C300CFFF76"
-            BuildableName = "WidgetExtension.appex"
-            BlueprintName = "WidgetExtension"
+            BuildableName = "Komari Widget.appex"
+            BlueprintName = "Komari Widget"
             ReferencedContainer = "container:Komari Mobile.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>

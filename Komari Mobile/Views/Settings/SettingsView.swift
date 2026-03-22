@@ -15,44 +15,49 @@ struct SettingsView: View {
             Form {
                 Section("App Settings") {
                     NavigationLink(value: "dashboard-settings") {
-                        Text("Dashboard Settings")
+                        TextWithColorfulIcon(titleKey: "Dashboard Settings", systemName: "gearshape.fill", color: .blue)
                     }
                 }
 
                 Section("Notifications") {
                     NavigationLink(value: "offline-notifications") {
-                        Text("Offline Notifications")
+                        TextWithColorfulIcon(titleKey: "Offline Notifications", systemName: "wifi.slash", color: .blue)
                     }
                     NavigationLink(value: "load-alerts") {
-                        Text("Load Alerts")
+                        TextWithColorfulIcon(titleKey: "Load Alerts", systemName: "exclamationmark.triangle", color: .orange)
                     }
                     NavigationLink(value: "general-notifications") {
-                        Text("General Notifications")
+                        TextWithColorfulIcon(titleKey: "General Notifications", systemName: "bell", color: .red)
                     }
                 }
 
                 Section("Administration") {
                     NavigationLink(value: "ping-tasks") {
-                        Text("Ping Tasks")
+                        TextWithColorfulIcon(titleKey: "Ping Tasks", systemName: "network", color: .blue)
                     }
                     NavigationLink(value: "remote-exec") {
-                        Text("Remote Exec")
+                        TextWithColorfulIcon(titleKey: "Remote Exec", systemName: "terminal", color: .black)
                     }
                     NavigationLink(value: "sessions") {
-                        Text("Sessions")
+                        TextWithColorfulIcon(titleKey: "Sessions", systemName: "person.2", color: .teal)
                     }
                     NavigationLink(value: "account") {
-                        Text("Account")
+                        TextWithColorfulIcon(titleKey: "Account", systemName: "person.crop.circle", color: .green)
                     }
                     NavigationLink(value: "logs") {
-                        Text("Logs")
+                        TextWithColorfulIcon(titleKey: "Logs", systemName: "doc.text", color: .gray)
                     }
                 }
 
                 Section("About") {
-                    Link("User Guide", destination: KMCore.userGuideURL)
+                    Link(destination: KMCore.userGuideURL) {
+                        TextWithColorfulIcon(titleKey: "User Guide", systemName: "book", color: .blue)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
                     NavigationLink(value: "acknowledgments") {
-                        Text("Acknowledgments")
+                        TextWithColorfulIcon(titleKey: "Acknowledgments", systemName: "heart", color: .pink)
                     }
                 }
             }
@@ -82,11 +87,6 @@ struct SettingsView: View {
                 default:
                     EmptyView()
                 }
-            }
-            .safeAreaInset(edge: .bottom) {
-                Rectangle()
-                    .fill(.clear)
-                    .frame(height: 50)
             }
         }
     }

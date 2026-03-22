@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB9771B32F4696C300CFFF76 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9771B22F4696C300CFFF76 /* WidgetKit.framework */; };
 		CB9771B52F4696C300CFFF76 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9771B42F4696C300CFFF76 /* SwiftUI.framework */; };
-		CB9771C02F4696C400CFFF76 /* WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CB9771B02F4696C300CFFF76 /* WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CB9771C02F4696C400CFFF76 /* Komari Widget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CB9771B02F4696C300CFFF76 /* Komari Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +29,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				CB9771C02F4696C400CFFF76 /* WidgetExtension.appex in Embed Foundation Extensions */,
+				CB9771C02F4696C400CFFF76 /* Komari Widget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,18 +39,18 @@
 /* Begin PBXFileReference section */
 		CB9753342F42022600CFFF76 /* Komari Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Komari Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB975DD82F421A0000CFFF76 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LICENSE; sourceTree = "<group>"; };
-		CB9771B02F4696C300CFFF76 /* WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB9771B02F4696C300CFFF76 /* Komari Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Komari Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB9771B22F4696C300CFFF76 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CB9771B42F4696C300CFFF76 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		CB9771C42F4696C400CFFF76 /* Exceptions for "Komari Widget" folder in "WidgetExtension" target */ = {
+		CB9771C42F4696C400CFFF76 /* Exceptions for "Komari Widget" folder in "Komari Widget" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = CB9771AF2F4696C300CFFF76 /* WidgetExtension */;
+			target = CB9771AF2F4696C300CFFF76 /* Komari Widget */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -63,7 +63,7 @@
 		CB9771B62F4696C300CFFF76 /* Komari Widget */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				CB9771C42F4696C400CFFF76 /* Exceptions for "Komari Widget" folder in "WidgetExtension" target */,
+				CB9771C42F4696C400CFFF76 /* Exceptions for "Komari Widget" folder in "Komari Widget" target */,
 			);
 			path = "Komari Widget";
 			sourceTree = "<group>";
@@ -105,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				CB9753342F42022600CFFF76 /* Komari Mobile.app */,
-				CB9771B02F4696C300CFFF76 /* WidgetExtension.appex */,
+				CB9771B02F4696C300CFFF76 /* Komari Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -146,9 +146,9 @@
 			productReference = CB9753342F42022600CFFF76 /* Komari Mobile.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CB9771AF2F4696C300CFFF76 /* WidgetExtension */ = {
+		CB9771AF2F4696C300CFFF76 /* Komari Widget */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB9771C52F4696C400CFFF76 /* Build configuration list for PBXNativeTarget "WidgetExtension" */;
+			buildConfigurationList = CB9771C52F4696C400CFFF76 /* Build configuration list for PBXNativeTarget "Komari Widget" */;
 			buildPhases = (
 				CB9771AC2F4696C300CFFF76 /* Sources */,
 				CB9771AD2F4696C300CFFF76 /* Frameworks */,
@@ -161,11 +161,11 @@
 			fileSystemSynchronizedGroups = (
 				CB9771B62F4696C300CFFF76 /* Komari Widget */,
 			);
-			name = WidgetExtension;
+			name = "Komari Widget";
 			packageProductDependencies = (
 			);
 			productName = WidgetExtension;
-			productReference = CB9771B02F4696C300CFFF76 /* WidgetExtension.appex */;
+			productReference = CB9771B02F4696C300CFFF76 /* Komari Widget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -202,7 +202,7 @@
 			projectRoot = "";
 			targets = (
 				CB9753332F42022600CFFF76 /* Komari Mobile */,
-				CB9771AF2F4696C300CFFF76 /* WidgetExtension */,
+				CB9771AF2F4696C300CFFF76 /* Komari Widget */,
 			);
 		};
 /* End PBXProject section */
@@ -244,7 +244,7 @@
 /* Begin PBXTargetDependency section */
 		CB9771BF2F4696C400CFFF76 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = CB9771AF2F4696C300CFFF76 /* WidgetExtension */;
+			target = CB9771AF2F4696C300CFFF76 /* Komari Widget */;
 			targetProxy = CB9771BE2F4696C400CFFF76 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -380,7 +380,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Komari Mobile/Komari Mobile.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = C7AS5D38Q8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -418,7 +418,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Komari Mobile/Komari Mobile.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = C7AS5D38Q8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -454,9 +454,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = "Komari Widget/WidgetExtension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Komari Widget/Komari Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = C7AS5D38Q8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Komari Widget/Info.plist";
@@ -486,9 +486,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = "Komari Widget/WidgetExtension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Komari Widget/Komari Widget.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = C7AS5D38Q8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Komari Widget/Info.plist";
@@ -534,7 +534,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CB9771C52F4696C400CFFF76 /* Build configuration list for PBXNativeTarget "WidgetExtension" */ = {
+		CB9771C52F4696C400CFFF76 /* Build configuration list for PBXNativeTarget "Komari Widget" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CB9771C22F4696C400CFFF76 /* Debug */,
