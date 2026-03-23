@@ -10,12 +10,19 @@ import SwiftUI
 enum ServerDetailTab: String, CaseIterable, Identifiable {
     var id: String { self.rawValue }
 
-    case status = "Status"
-    case load = "Load"
-    case ping = "Ping"
+    case status = "status"
+    case load = "load"
+    case ping = "ping"
 
     func localized() -> String {
-        return NSLocalizedString(self.rawValue, comment: "")
+        switch self {
+        case .status:
+            return String(localized: "Status")
+        case .load:
+            return String(localized: "Load")
+        case .ping:
+            return String(localized: "Ping")
+        }
     }
 }
 

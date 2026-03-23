@@ -59,9 +59,17 @@ struct PingChartProvider: AppIntentTimelineProvider {
             }
 
             let pingData = try await WidgetDataProvider.getPingRecords(uuid: id, hours: 1)
-            let tasks = pingData.tasks ?? []
-            let taskMap = Dictionary(uniqueKeysWithValues: tasks.map { ($0.id, $0.name) })
+            let allTasks = pingData.tasks ?? []
             let records = pingData.records ?? []
+
+            let selectedTaskId = configuration.task.flatMap { Int($0.id) }
+            let tasks: [PingTaskInfo]
+            if let selectedId = selectedTaskId {
+                tasks = allTasks.filter { $0.id == selectedId }
+            } else {
+                tasks = allTasks
+            }
+            let taskMap = Dictionary(uniqueKeysWithValues: tasks.map { ($0.id, $0.name) })
 
             let points: [PingWidgetPoint] = records.compactMap { record in
                 guard let timeStr = record.time,
@@ -173,8 +181,6 @@ struct PingChartSmallView: View {
                             y: .value("Ping", point.value)
                         )
                         .foregroundStyle(.blue)
-                        .lineStyle(StrokeStyle(lineWidth: 1))
-                        .interpolationMethod(.catmullRom)
                     }
                     .chartXAxis(.hidden)
                     .chartYAxis(.hidden)
@@ -279,8 +285,6 @@ struct PingChartMediumView: View {
                             y: .value("Ping", point.value)
                         )
                         .foregroundStyle(by: .value("Task", point.taskName))
-                        .lineStyle(StrokeStyle(lineWidth: 1.5))
-                        .interpolationMethod(.catmullRom)
                     }
                     .chartForegroundStyleScale(range: entry.tasks.prefix(2).enumerated().map { colorForTask($0.offset) })
                     .chartXAxis {

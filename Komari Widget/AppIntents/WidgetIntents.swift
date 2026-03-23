@@ -29,8 +29,11 @@ struct SelectLoadChartIntent: WidgetConfigurationIntent {
 
 struct SelectPingIntent: WidgetConfigurationIntent {
     static var title: LocalizedStringResource = "Select Ping Chart"
-    static var description: IntentDescription = "Choose a server for ping monitoring"
+    static var description: IntentDescription = "Choose a server and task for ping monitoring"
 
     @Parameter(title: "Server")
     var server: ServerAppEntity?
+
+    @Parameter(title: "Task")
+    var task: PingTaskAppEntity?
 }

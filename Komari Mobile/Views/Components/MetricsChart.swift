@@ -42,14 +42,6 @@ enum ChartPeriod {
         case .thirtyDays: 2 * 60 * 60 // 2 hour → ~360 pts
         }
     }
-
-    /// CatmullRom for fine-grained 4h data; linear for coarser periods to avoid overshoot artifacts with AreaMark
-    var interpolation: InterpolationMethod {
-        switch self {
-        case .fourHours: .catmullRom
-        case .oneDay, .sevenDays, .thirtyDays: .linear
-        }
-    }
 }
 
 // MARK: - Downsampling
@@ -110,14 +102,12 @@ struct MetricsChart: View {
                         y: .value(title, point.value)
                     )
                     .foregroundStyle(color.gradient)
-                    .interpolationMethod(period.interpolation)
 
                     AreaMark(
                         x: .value("Time", point.date),
                         y: .value(title, point.value)
                     )
                     .foregroundStyle(color.opacity(0.1).gradient)
-                    .interpolationMethod(period.interpolation)
                 }
                 .chartYAxis {
                     AxisMarks(position: .leading) { value in
@@ -191,7 +181,6 @@ struct MetricsMultiSeriesChart: View {
                                 series: .value("Series", s.name)
                             )
                             .foregroundStyle(s.color)
-                            .interpolationMethod(period.interpolation)
                         }
                     }
                 }

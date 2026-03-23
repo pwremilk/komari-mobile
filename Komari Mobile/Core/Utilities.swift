@@ -44,21 +44,21 @@ func formatBytes(_ bytes: Int64, decimals: Int = 2) -> String {
 }
 
 // Seconds To Interval String
-func formatTimeInterval(seconds: Int64, shortened: Bool = false) -> String {
+func formatTimeInterval(seconds: Int64, compact: Bool = false, shortened: Bool = false) -> String {
     let minutes = seconds / 60
     let hours = minutes / 60
     let days = hours / 24
 
     if days >= 10 {
-        return "\(days) d"
+        return compact ? "\(days) d" : String(localized: "\(days) Day(s)")
     } else if days > 0 {
-        return shortened ? "\(days) d" : "\(days) d \(hours % 24) h"
+        return compact ? (shortened ? "\(days) d" : "\(days) d \(hours % 24) h") : String(localized: "\(days) Day(s) and \(hours % 24) Hour(s)")
     } else if hours > 0 {
-        return shortened ? "\(hours) h" : "\(hours) h \(minutes % 60) m"
+        return compact ? (shortened ? "\(hours) h" : "\(hours) h \(minutes % 60) m") : String(localized: "\(days) Hour(s) and \(hours % 24) Minute(s)")
     } else if minutes > 0 {
-        return shortened ? "\(minutes) m" : "\(minutes) m \(seconds % 60) s"
+        return compact ? (shortened ? "\(minutes) m" : "\(minutes) m \(seconds % 60) s") : String(localized: "\(days) Minute(s) and \(hours % 24) Second(s)")
     } else {
-        return "\(seconds) s"
+        return compact ? "\(seconds) s" : String(localized: "\(seconds) Second(s)")
     }
 }
 

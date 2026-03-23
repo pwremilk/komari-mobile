@@ -30,6 +30,7 @@ struct PingChartView: View {
     @State private var pingRecords: [PingRecord] = []
     @State private var tasks: [PingTaskInfo] = []
     @State private var loadingState: LoadingState = .idle
+    @State private var hiddenTaskIds: Set<Int> = []
 
     private static let taskColors: [Color] = [
         .red, .green, .blue, .orange, .purple, .teal, .pink, .yellow
@@ -104,42 +105,60 @@ struct PingChartView: View {
     private var taskSummaryCard: some View {
         VStack(spacing: 0) {
             ForEach(Array(tasks.enumerated()), id: \.element.id) { index, task in
-                HStack(spacing: 8) {
-                    RoundedRectangle(cornerRadius: 2)
-                        .fill(Self.taskColors[index % Self.taskColors.count])
-                        .frame(width: 4, height: 24)
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(task.name)
-                            .font(.system(size: 14, weight: .semibold))
-                        HStack(spacing: 8) {
-                            if let latest = task.latest {
-                                Text("\(Int(latest)) ms")
+                let isHidden = hiddenTaskIds.contains(task.id)
+                Button {
+                    withAnimation(.smooth(duration: 0.3)) {
+                        if isHidden {
+                            hiddenTaskIds.remove(task.id)
+                        } else {
+                            hiddenTaskIds.insert(task.id)
+                        }
+                    }
+                } label: {
+                    HStack(spacing: 8) {
+                        RoundedRectangle(cornerRadius: 2)
+                            .fill(Self.taskColors[index % Self.taskColors.count])
+                            .frame(width: 4, height: 24)
+                            .opacity(isHidden ? 0.3 : 1)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(task.name)
+                                .font(.system(size: 14, weight: .semibold))
+                            HStack(spacing: 8) {
+                                if let latest = task.latest {
+                                    Text("\(Int(latest)) ms")
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                                if let loss = task.loss {
+                                    Text(String(format: "%.1f%% loss", loss))
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                        }
+                        Spacer()
+                        VStack(alignment: .trailing, spacing: 2) {
+                            if let avg = task.avg {
+                                Text("avg \(Int(avg)) ms")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
-                            if let loss = task.loss {
-                                Text(String(format: "%.1f%% loss", loss))
+                            if let p99 = task.p99, let p50 = task.p50 {
+                                Text("p50 \(Int(p50)) / p99 \(Int(p99))")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
                         }
+                        Image(systemName: isHidden ? "eye.slash" : "eye")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
                     }
-                    Spacer()
-                    VStack(alignment: .trailing, spacing: 2) {
-                        if let avg = task.avg {
-                            Text("avg \(Int(avg)) ms")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                        if let p99 = task.p99, let p50 = task.p50 {
-                            Text("p50 \(Int(p50)) / p99 \(Int(p99))")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 8)
+                    .opacity(isHidden ? 0.4 : 1)
+                    .contentShape(Rectangle())
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
+                .buttonStyle(.plain)
 
                 if index < tasks.count - 1 {
                     Divider()
@@ -195,8 +214,8 @@ struct PingChartView: View {
                             AxisValueLabel(format: .dateTime.hour().minute())
                         }
                     }
-                    .chartForegroundStyleScale(range: tasks.enumerated().map { index, _ in
-                        Self.taskColors[index % Self.taskColors.count]
+                    .chartForegroundStyleScale(range: tasks.enumerated().compactMap { index, task in
+                        hiddenTaskIds.contains(task.id) ? nil : Self.taskColors[index % Self.taskColors.count]
                     })
                     .frame(height: 200)
                     .padding(.horizontal, 10)
@@ -227,6 +246,7 @@ struct PingChartView: View {
 
         for record in pingRecords {
             guard let taskId = record.taskId,
+                  !hiddenTaskIds.contains(taskId),
                   let timeStr = record.time,
                   let date = ServerDetailMonitorView.parseDate(timeStr),
                   let value = record.value,

@@ -174,10 +174,10 @@ struct LoadChartSmallView: View {
                                 if let v = value.as(Double.self) {
                                     switch entry.indicator {
                                     case .cpu, .memory, .disk:
-                                        Text("\(Int(v))%")
+                                        Text("\(Int(v))\(entry.indicator.unit)")
                                             .font(.system(size: 8))
                                     case .networkIn, .networkOut:
-                                        Text(formatBytes(Int64(v)))
+                                        Text("\(formatBytes(Int64(v)))\(entry.indicator.unit)")
                                             .font(.system(size: 8))
                                     }
                                 }
