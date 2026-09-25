@@ -253,7 +253,7 @@ private struct InstallCommandView: View {
                     HStack {
                         Spacer()
                         Label(copied ? "Copied!" : "Copy Command", systemImage: copied ? "checkmark" : "doc.on.doc")
-                            .contentTransition(.symbolEffect(.replace))
+                            .iconReplace()
                         Spacer()
                     }
                 }

@@ -365,7 +365,7 @@ struct LoadChartWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectLoadChartIntent.self, provider: LoadChartProvider()) { entry in
             LoadChartSmallOrMediumView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .widgetBG()
         }
         .configurationDisplayName("Load Chart")
         .description("View server load over time.")

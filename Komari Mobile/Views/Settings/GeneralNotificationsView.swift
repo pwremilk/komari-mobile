@@ -45,7 +45,7 @@ struct GeneralNotificationsView: View {
         Form {
             Section {
                 Toggle("Enable", isOn: $expireEnabled)
-                    .onChange(of: expireEnabled) { _, newValue in
+                    .onChange(of: expireEnabled) { newValue in
                         Task {
                             await updateSetting(["expire_notification_enabled": newValue])
                         }
@@ -67,7 +67,7 @@ struct GeneralNotificationsView: View {
 
             Section {
                 Toggle("Login Notification", isOn: $loginNotification)
-                    .onChange(of: loginNotification) { _, newValue in
+                    .onChange(of: loginNotification) { newValue in
                         Task {
                             await updateSetting(["login_notification": newValue])
                         }

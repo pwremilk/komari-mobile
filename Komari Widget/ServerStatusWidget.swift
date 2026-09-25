@@ -290,7 +290,7 @@ struct ServerStatusWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectServerIntent.self, provider: ServerStatusProvider()) { entry in
             ServerStatusSmallOrMediumView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .widgetBG()
         }
         .configurationDisplayName("Server Status")
         .description("Monitor server status at a glance.")

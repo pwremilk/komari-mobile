@@ -325,7 +325,7 @@ struct PingChartWidget: Widget {
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: SelectPingIntent.self, provider: PingChartProvider()) { entry in
             PingChartSmallOrMediumView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
+                .widgetBG()
         }
         .configurationDisplayName("Ping Chart")
         .description("Monitor server ping latency.")

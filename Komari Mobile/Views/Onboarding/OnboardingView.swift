@@ -278,7 +278,7 @@ private struct OnboardingFeaturePage: View {
                 .font(.system(size: 72, weight: .light))
                 .foregroundStyle(iconColor.gradient)
                 .symbolRenderingMode(.hierarchical)
-                .symbolEffect(.bounce, value: iconAppeared)
+                .iconBounce(iconAppeared)
                 .scaleEffect(iconAppeared ? 1 : 0.3)
                 .opacity(iconAppeared ? 1 : 0)
 
