@@ -87,7 +87,7 @@ struct ServerListView: View {
     private let columns: [GridItem] = [GridItem(.adaptive(minimum: 320, maximum: 450))]
 
     var body: some View {
-        NavigationStack(path: kmBinding(for: KMState.pathServers, on: state)) {
+        NavigationStack(path: kmBinding(for: \KMState.pathServers, on: state)) {
             ZStack {
                 background
                     .zIndex(0)

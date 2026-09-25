@@ -11,7 +11,7 @@ struct SettingsView: View {
     @EnvironmentObject var state: KMState
 
     var body: some View {
-        NavigationStack(path: kmBinding(for: KMState.pathSettings, on: state)) {
+        NavigationStack(path: kmBinding(for: \KMState.pathSettings, on: state)) {
             Form {
                 Section("App Settings") {
                     NavigationLink(value: "dashboard-settings") {
