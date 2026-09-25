@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var state
+    @EnvironmentObject var state: KMState
 
     var body: some View {
         NavigationStack(path: Bindable(state).pathSettings) {

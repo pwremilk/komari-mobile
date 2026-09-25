@@ -47,7 +47,7 @@ struct PingChartView: View {
         .onAppear {
             fetchPingRecords()
         }
-        .onChange(of: period) {
+        .onChange(of: period) { _ in
             pingRecords = []
             tasks = []
             loadingState = .idle
@@ -72,19 +72,19 @@ struct PingChartView: View {
             case .idle, .loading:
                 ProgressView()
                     .frame(maxWidth: .infinity, minHeight: 100)
-                    .transition(.blurReplace)
+                    .transition(.opacity)
             case .loaded:
                 if tasks.isEmpty {
                     Text("No Data")
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, minHeight: 100)
-                        .transition(.blurReplace)
+                        .transition(.opacity)
                 } else {
                     VStack(spacing: 10) {
                         taskSummaryCard
                         pingChart
                     }
-                    .transition(.blurReplace)
+                    .transition(.opacity)
                 }
             case .error(let message):
                 VStack(spacing: 10) {
@@ -96,7 +96,7 @@ struct PingChartView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, minHeight: 100)
-                .transition(.blurReplace)
+                .transition(.opacity)
             }
         }
         .animation(.smooth(duration: 0.3), value: loadingState)

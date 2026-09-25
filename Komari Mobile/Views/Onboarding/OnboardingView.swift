@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
     @Binding var isShowingOnboarding: Bool
     @State private var currentPage = 0
 
@@ -79,7 +79,7 @@ struct OnboardingView: View {
                                 .padding(.vertical, 14)
                                 .background(Color.accentColor, in: Capsule())
                         }
-                        .transition(.blurReplace)
+                        .transition(.opacity)
                     } else {
                         Button {
                             connect()
@@ -92,7 +92,7 @@ struct OnboardingView: View {
                                 .background(canConnect ? Color.accentColor : Color.gray, in: Capsule())
                         }
                         .disabled(!canConnect)
-                        .transition(.blurReplace)
+                        .transition(.opacity)
                     }
                 }
                 .animation(.smooth, value: currentPage)
@@ -153,18 +153,18 @@ struct OnboardingView: View {
 
                 VStack(spacing: 12) {
                     onboardingField(icon: "globe", placeholder: "komari.hidandelion.com", text: $link)
-                        .onChange(of: link) {
+                        .onChange(of: link) { _ in
                             link = link.replacingOccurrences(of: "^(http|https)://", with: "", options: .regularExpression)
                         }
 
                     if useAPIKey {
                         onboardingSecureField(icon: "key", placeholder: "API Key", text: $apiKey)
-                            .transition(.blurReplace)
+                            .transition(.opacity)
                     } else {
                         onboardingField(icon: "person", placeholder: "Username", text: $username)
-                            .transition(.blurReplace)
+                            .transition(.opacity)
                         onboardingSecureField(icon: "lock", placeholder: "Password", text: $password)
-                            .transition(.blurReplace)
+                            .transition(.opacity)
                     }
 
                     HStack {
@@ -180,7 +180,7 @@ struct OnboardingView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
                     .background(Color(UIColor.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-                    .onChange(of: useAPIKey) {
+                    .onChange(of: useAPIKey) { _ in
                         if useAPIKey {
                             username = ""
                             password = ""

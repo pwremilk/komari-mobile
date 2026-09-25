@@ -69,7 +69,7 @@ struct ServerDetailMonitorView: View {
         .onAppear {
             fetchRecords()
         }
-        .onChange(of: period) {
+        .onChange(of: period) { _ in
             records = []
             loadingState = .idle
             fetchRecords()
@@ -93,13 +93,13 @@ struct ServerDetailMonitorView: View {
             case .idle, .loading:
                 ProgressView()
                     .frame(maxWidth: .infinity, minHeight: 100)
-                    .transition(.blurReplace)
+                    .transition(.opacity)
             case .loaded:
                 if records.isEmpty {
                     Text("No Data")
                         .foregroundStyle(.secondary)
                         .frame(maxWidth: .infinity, minHeight: 100)
-                        .transition(.blurReplace)
+                        .transition(.opacity)
                 } else {
                     VStack(spacing: 10) {
                         cpuChart
@@ -110,7 +110,7 @@ struct ServerDetailMonitorView: View {
                         processChart
                         gpuChart
                     }
-                    .transition(.blurReplace)
+                    .transition(.opacity)
                 }
             case .error(let message):
                 VStack(spacing: 10) {
@@ -122,7 +122,7 @@ struct ServerDetailMonitorView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, minHeight: 100)
-                .transition(.blurReplace)
+                .transition(.opacity)
             }
         }
         .animation(.smooth(duration: 0.3), value: loadingState)

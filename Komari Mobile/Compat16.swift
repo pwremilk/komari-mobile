@@ -36,7 +36,7 @@ struct ContentUnavailableView<Lbl: View, Desc: View, Act: View>: View {
     }
 }
 
-extension ContentUnavailableView where Desc == Text, Act == EmptyView {
+extension ContentUnavailableView where Lbl == SwiftUI.Label<Text, Image>, Desc == Text, Act == EmptyView {
     init(_ title: String, systemImage: String) {
         self.init(label: { SwiftUI.Label(title, systemImage: systemImage) },
                   description: { Text("") },

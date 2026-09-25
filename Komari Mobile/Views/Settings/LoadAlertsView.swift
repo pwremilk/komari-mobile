@@ -33,7 +33,7 @@ private enum LoadAlertMetric: String, CaseIterable {
 }
 
 struct LoadAlertsView: View {
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
 
     @State private var alerts: [LoadAlert] = []
     @State private var isLoading = true

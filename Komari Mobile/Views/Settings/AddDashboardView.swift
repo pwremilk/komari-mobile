@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddDashboardView: View {
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
     @Binding var isShowingOnboarding: Bool
     @State private var link: String = ""
     @State private var username: String = ""
@@ -34,7 +34,7 @@ struct AddDashboardView: View {
                     TextField("Dashboard Link", text: $link)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
-                        .onChange(of: link) {
+                        .onChange(of: link) { _ in
                             link = link.replacingOccurrences(of: "^(http|https)://", with: "", options: .regularExpression)
                         }
                 } header: {
@@ -47,7 +47,7 @@ struct AddDashboardView: View {
 
                 Section("Authentication") {
                     Toggle("Use API Key", isOn: $useAPIKey)
-                        .onChange(of: useAPIKey) {
+                        .onChange(of: useAPIKey) { _ in
                             if useAPIKey {
                                 username = ""
                                 password = ""

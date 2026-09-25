@@ -31,7 +31,7 @@ struct UsageBar: View {
                 Text("\(clampedValue, specifier: "%.1f")%")
                     .font(.subheadline)
                     .fontWeight(.medium)
-                    .contentTransition(.numericText(value: clampedValue))
+                    
             }
             GeometryReader { proxy in
                 ZStack(alignment: .leading) {

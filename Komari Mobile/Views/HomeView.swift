@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var state
+    @EnvironmentObject var state: KMState
 
     var body: some View {
         if #available(iOS 18.0, *) {

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RemoteExecView: View {
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
 
     @State private var command = ""
     @State private var selectedClients: Set<String> = []

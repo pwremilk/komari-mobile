@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
     @State private var isShowingOnboarding: Bool = false
 
     var body: some View {
         Group {
             if isShowingOnboarding {
                 OnboardingView(isShowingOnboarding: $isShowingOnboarding)
-                    .transition(.blurReplace)
+                    .transition(.opacity)
             } else {
                 HomeView()
-                    .transition(.blurReplace)
+                    .transition(.opacity)
             }
         }
         .animation(.smooth(duration: 0.5), value: isShowingOnboarding)

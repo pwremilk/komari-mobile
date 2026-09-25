@@ -177,7 +177,7 @@ struct GaugeRing: View {
                 // Center percentage
                 Text("\(Int(clampedValue))%")
                     .font(.system(size: 13, weight: .bold, design: .rounded))
-                    .contentTransition(.numericText(value: clampedValue))
+                    
             }
             .frame(width: size, height: size)
 

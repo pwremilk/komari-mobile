@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DashboardSettingsView: View {
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
     @State private var link: String = KMCore.getKomariDashboardLink()
     @State private var username: String = KMCore.getKomariDashboardUsername()
     @State private var password: String = KMCore.getKomariDashboardPassword()
@@ -25,7 +25,7 @@ struct DashboardSettingsView: View {
                 TextField("Dashboard Link", text: $link)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
-                    .onChange(of: link) {
+                    .onChange(of: link) { _ in
                         link = link.replacingOccurrences(of: "^(http|https)://", with: "", options: .regularExpression)
                     }
             } header: {
@@ -36,7 +36,7 @@ struct DashboardSettingsView: View {
 
             Section("Authentication") {
                 Toggle("Use API Key", isOn: $useAPIKey)
-                    .onChange(of: useAPIKey) {
+                    .onChange(of: useAPIKey) { _ in
                         if useAPIKey {
                             username = ""
                             password = ""

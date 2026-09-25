@@ -30,7 +30,7 @@ private enum PingType: String, CaseIterable {
 }
 
 struct PingTasksView: View {
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
 
     @State private var tasks: [PingTask] = []
     @State private var isLoading = true

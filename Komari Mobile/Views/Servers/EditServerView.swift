@@ -23,7 +23,7 @@ private enum TrafficUnit: Int64, CaseIterable {
 
 struct EditServerView: View {
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
 
     let node: NodeData
 

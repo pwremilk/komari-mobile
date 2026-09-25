@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ServerListView: View {
-    @EnvironmentObject var state
+    @EnvironmentObject var state: KMState
     @State private var backgroundImage: UIImage?
     @State private var sortIndicator: SortIndicator = .index
     @State private var sortOrder: SortOrder = .ascending

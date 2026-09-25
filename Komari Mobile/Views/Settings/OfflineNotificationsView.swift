@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OfflineNotificationsView: View {
-    @EnvironmentObject private var state
+    @EnvironmentObject private var state: KMState
 
     @State private var notifications: [OfflineNotification] = []
     @State private var isLoading = true

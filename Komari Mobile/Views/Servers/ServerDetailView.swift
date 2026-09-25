@@ -27,7 +27,7 @@ enum ServerDetailTab: String, CaseIterable, Identifiable {
 }
 
 struct ServerDetailView: View {
-    @EnvironmentObject var state
+    @EnvironmentObject var state: KMState
     var uuid: String
     @State private var activeTab: ServerDetailTab = .status
     @State private var isShowEditServer: Bool = false
@@ -42,10 +42,10 @@ struct ServerDetailView: View {
                 VStack {
                     if isOnline {
                         content(node: node, status: status)
-                            .transition(.blurReplace)
+                            .transition(.opacity)
                     } else {
                         ContentUnavailableView("Server Unavailable", systemImage: "square.stack.3d.up.slash.fill")
-                            .transition(.blurReplace)
+                            .transition(.opacity)
                     }
                 }
                 .animation(.smooth(duration: 0.3), value: isOnline)
@@ -89,13 +89,13 @@ struct ServerDetailView: View {
                     switch(activeTab) {
                     case .status:
                         ServerDetailStatusView(node: node, status: status)
-                            .transition(.blurReplace)
+                            .transition(.opacity)
                     case .load:
                         ServerDetailMonitorView(node: node)
-                            .transition(.blurReplace)
+                            .transition(.opacity)
                     case .ping:
                         PingChartView(node: node)
-                            .transition(.blurReplace)
+                            .transition(.opacity)
                     }
                 }
                 .animation(.smooth(duration: 0.25), value: activeTab)
