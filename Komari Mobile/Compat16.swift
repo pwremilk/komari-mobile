@@ -70,3 +70,10 @@ extension View {
         }
     }
 }
+
+/// iOS16 replacement for Bindable(obj).prop (Observation-only).
+func kmBinding<Object: ObservableObject, V>(
+    for keyPath: ReferenceWritableKeyPath<Object, V>, on obj: Object
+) -> Binding<V> {
+    Binding(get: { obj[keyPath: keyPath] }, set: { obj[keyPath: keyPath] = $0 })
+}

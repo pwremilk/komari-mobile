@@ -87,7 +87,7 @@ struct ServerListView: View {
     private let columns: [GridItem] = [GridItem(.adaptive(minimum: 320, maximum: 450))]
 
     var body: some View {
-        NavigationStack(path: Bindable(state).pathServers) {
+        NavigationStack(path: kmBinding(for: .pathServers, on: state)) {
             ZStack {
                 background
                     .zIndex(0)
@@ -188,7 +188,7 @@ struct ServerListView: View {
                 ScrollView {
                     if !state.groupNames.isEmpty {
                         groupPicker
-                            .safeAreaPadding(.horizontal, 15)
+                            .padding(.horizontal, 15)
                             .padding(.bottom, 5)
                     }
 

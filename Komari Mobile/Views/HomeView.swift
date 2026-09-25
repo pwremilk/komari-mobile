@@ -12,7 +12,7 @@ struct HomeView: View {
 
     var body: some View {
         if #available(iOS 18.0, *) {
-            TabView(selection: Bindable(state).tab) {
+            TabView(selection: kmBinding(for: .tab, on: state)) {
                 Tab(value: MainTab.servers) {
                     ServerListView()
                 } label: {
@@ -27,7 +27,7 @@ struct HomeView: View {
             }
         }
         else {
-            TabView(selection: Bindable(state).tab) {
+            TabView(selection: kmBinding(for: .tab, on: state)) {
                 ServerListView()
                     .tabItem {
                         Label(MainTab.servers.title, systemImage: MainTab.servers.systemName)
