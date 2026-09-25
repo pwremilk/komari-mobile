@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct KomariMobileApp: App {
-    var state: KMState = .init()
+    @StateObject var state = KMState()
 
     init() {
         KMCore.registerUserDefaults()
@@ -18,7 +18,7 @@ struct KomariMobileApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(state)
+                .environmentObject(state)
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddDashboardView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(KMState.self) private var state
+    @EnvironmentObject private var state
     @Binding var isShowingOnboarding: Bool
     @State private var link: String = ""
     @State private var username: String = ""

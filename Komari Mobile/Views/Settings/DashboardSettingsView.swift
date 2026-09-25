@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DashboardSettingsView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(KMState.self) private var state
+    @EnvironmentObject private var state
     @State private var link: String = KMCore.getKomariDashboardLink()
     @State private var username: String = KMCore.getKomariDashboardUsername()
     @State private var password: String = KMCore.getKomariDashboardPassword()

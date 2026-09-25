@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import Observation
 
 enum MainTab: String, CaseIterable {
     case servers = "servers"
@@ -28,18 +27,17 @@ enum MainTab: String, CaseIterable {
     }
 }
 
-@Observable
-class KMState {
-    var pathServers: NavigationPath = .init()
-    var pathSettings: NavigationPath = .init()
+class KMState: ObservableObject {
+    @Published var pathServers: NavigationPath = .init()
+    @Published var pathSettings: NavigationPath = .init()
 
-    var tab: MainTab = .servers
+    @Published var tab: MainTab = .servers
 
-    var dashboardLoadingState: LoadingState = .idle
-    var nodes: [NodeData] = .init()
-    var liveStatus: [String: NodeLiveStatus] = .init()
-    var onlineUUIDs: Set<String> = .init()
-    private var timer: Timer?
+    @Published var dashboardLoadingState: LoadingState = .idle
+    @Published var nodes: [NodeData] = .init()
+    @Published var liveStatus: [String: NodeLiveStatus] = .init()
+    @Published var onlineUUIDs: Set<String> = .init()
+    private @Published var timer: Timer?
 
     var groupNames: [String] {
         let groups = nodes.compactMap { $0.group }.filter { !$0.isEmpty }
@@ -92,8 +90,8 @@ class KMState {
         timer = nil
     }
 
-    private var loadNodesTask: Task<Void, Error>?
-    private var refreshLiveStatusTask: Task<Void, Error>?
+    private @Published var loadNodesTask: Task<Void, Error>?
+    private @Published var refreshLiveStatusTask: Task<Void, Error>?
 
     func loadNodes() async throws {
         loadNodesTask?.cancel()

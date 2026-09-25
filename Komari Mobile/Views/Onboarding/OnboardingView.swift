@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @Environment(KMState.self) private var state
+    @EnvironmentObject private var state
     @Binding var isShowingOnboarding: Bool
     @State private var currentPage = 0
 

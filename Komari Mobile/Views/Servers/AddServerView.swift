@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddServerView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(KMState.self) private var state
+    @EnvironmentObject private var state
 
     @State private var serverName: String = ""
     @State private var isAdding: Bool = false

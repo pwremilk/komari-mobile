@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @Environment(KMState.self) private var state
+    @EnvironmentObject private var state
     @State private var isShowingOnboarding: Bool = false
 
     var body: some View {

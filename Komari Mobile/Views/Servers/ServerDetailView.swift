@@ -27,7 +27,7 @@ enum ServerDetailTab: String, CaseIterable, Identifiable {
 }
 
 struct ServerDetailView: View {
-    @Environment(KMState.self) var state
+    @EnvironmentObject var state
     var uuid: String
     @State private var activeTab: ServerDetailTab = .status
     @State private var isShowEditServer: Bool = false
