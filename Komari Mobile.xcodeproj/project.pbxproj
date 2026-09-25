@@ -129,12 +129,10 @@
 				CB9753302F42022600CFFF76 /* Sources */,
 				CB9753312F42022600CFFF76 /* Frameworks */,
 				CB9753322F42022600CFFF76 /* Resources */,
-				CB9771C12F4696C400CFFF76 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				CB9771BF2F4696C400CFFF76 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				CB9753362F42022600CFFF76 /* Komari Mobile */,
