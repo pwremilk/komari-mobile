@@ -15,10 +15,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: Queue notice
         env:
-          TG_TOKEN: ${{secrets.NANOMUSE_TG_TOKEN}
-          TG_CHAT: ${{secrets.TG_CHAT_ID}
-          RUN_URL: ${{github.server_url}/${{github.repository}/actions/runs/${{github.run_id}
-          COMMIT: ${{github.sha}
+          TG_TOKEN: ${{secrets.NANOMUSE_TG_TOKEN}}
+          TG_CHAT: ${{secrets.TG_CHAT_ID}}
+          RUN_URL: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}
+          COMMIT: ${{github.sha}}
         run: QUEUE=1 python3 notify.py
 
   build:
@@ -57,17 +57,17 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Komari-Mobile-ios16-unsigned
-          path: ${{env.IPA}
+          path: ${{env.IPA}}
           retention-days: 30
 
       - name: Notify NanoMuse
         if: always()
         env:
-          TG_TOKEN: ${{secrets.NANOMUSE_TG_TOKEN}
-          TG_CHAT: ${{secrets.TG_CHAT_ID}
-          STATUS: ${{job.status}
-          RUN_URL: ${{github.server_url}/${{github.repository}/actions/runs/${{github.run_id}
-          COMMIT: ${{github.sha}
+          TG_TOKEN: ${{secrets.NANOMUSE_TG_TOKEN}}
+          TG_CHAT: ${{secrets.TG_CHAT_ID}}
+          STATUS: ${{job.status}}
+          RUN_URL: ${{github.server_url}}/${{github.repository}}/actions/runs/${{github.run_id}}
+          COMMIT: ${{github.sha}}
         run: |
-          export IPA_FILE=${{env.IPA}
+          export IPA_FILE=${{env.IPA}}
           python3 notify.py
